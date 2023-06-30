@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer
+from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, LessonSerializer
+from . import models
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,3 +23,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class LessonViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows lessons to be viewed or created.
+    """
+     
+    queryset =models.Lesson.objects.all()
+    serializer_class = LessonSerializer
+
+    
